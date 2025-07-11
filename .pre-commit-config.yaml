@@ -13,13 +13,15 @@ repos:
     hooks:
     -   id: black
         args: [--line-length=88]
+        files: ^(dmsuite_jax/|tests/)
 -   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.10 # Use the latest version
     hooks:
     -   id: ruff
         args: [--fix, --exit-non-zero-on-fix] # Auto-fix and exit if fixes are made
-    -   id: ruff-format # Optional: if you want ruff to also format (alternative to black)
-        args: [--line-length=88] # Ensure consistency if used with black or instead of
+        files: ^(dmsuite_jax/|tests/)
+#    -   id: ruff-format # Optional: if you want ruff to also format (alternative to black)
+#        args: [--line-length=88] # Ensure consistency if used with black or instead of
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.10.0 # Use the latest version
     hooks:

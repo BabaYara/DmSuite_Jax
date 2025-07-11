@@ -52,13 +52,15 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 # If you have a src/ directory, uncomment the following:
 # package-dir = {"" = "src"}
-# packages = ["dmsuite_jax"] # Replace with your actual package name if needed
+packages = ["dmsuite_jax"] # Replace with your actual package name if needed
 
 [tool.black]
 line-length = 88
 
 [tool.ruff]
 line-length = 88
+
+[tool.ruff.lint]
 select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
