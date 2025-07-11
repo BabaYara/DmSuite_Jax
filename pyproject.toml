@@ -1,0 +1,96 @@
+[project]
+name = "dmsuite-jax"
+version = "0.0.1" # Initial version
+description = "A JAX-accelerated Python port of the DMSUITE spectral differentiation package."
+readme = "README.md"
+requires-python = "~=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Jules", email = "jules@example.com"} # Placeholder, user can update
+]
+keywords = ["spectral methods", "differentiation matrices", "jax", "scientific computing", "numerical differentiation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "jax",
+    "jaxlib",
+    "numpy>=2",
+    "scipy>=1.13",
+    "typing-extensions",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "ruff",
+    "pytest",
+    "pytest-benchmark",
+    "mypy",
+    "pre-commit",
+]
+
+[project.urls]
+Homepage = "https://github.com/example/dmsuite-jax" # Placeholder
+Repository = "https://github.com/example/dmsuite-jax" # Placeholder
+Documentation = "https://example.github.io/dmsuite-jax" # Placeholder
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# If you have a src/ directory, uncomment the following:
+# package-dir = {"" = "src"}
+# packages = ["dmsuite_jax"] # Replace with your actual package name if needed
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # Pyflakes
+    "I",  # isort
+    "C90", # mccabe complexity
+    "N",  # pep8-naming
+    "UP", # pyupgrade
+    "PT", # pytest style
+    "RUF", # Ruff-specific rules
+    # Pylint (select specific rules as needed, or use "PL" for all, then ignore)
+    "PLC", # Pylint Convention
+    "PLE", # Pylint Error
+    "PLR", # Pylint Refactor
+    "PLW", # Pylint Warning
+]
+ignore = [
+    "E501", # line too long, handled by black
+]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+# Add other mypy options as needed
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests", # Assuming tests will be in a 'tests' directory
+]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
