@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = "~=3.10"
 license = {file = "LICENSE"}
 authors = [
-    {name = "Baba Yara", email = "jules@example.com"} # Placeholder, user can update
+    {name = "Baba Yara", email = "fababa@iu.edu"}
 ]
 keywords = ["spectral methods", "differentiation matrices", "jax", "scientific computing", "numerical differentiation"]
 classifiers = [
@@ -43,7 +43,7 @@ dev = [
 [project.urls]
 Homepage = "https://github.com/BabaYara/DmSuite_Jax"
 Repository = "https://github.com/BabaYara/DmSuite_Jax"
-Documentation = "https://example.github.io/dmsuite-jax" # Placeholder
+Documentation = "https://babayara.github.io/DmSuite_Jax"
 
 [build-system]
 requires = ["setuptools>=61.0"]
