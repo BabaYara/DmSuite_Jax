@@ -1,0 +1,65 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0 # Use the latest version
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+-   repo: https://github.com/psf/black
+    rev: 24.4.2 # Use the latest version compatible with Python 3.10+
+    hooks:
+    -   id: black
+        args: [--line-length=88]
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.10 # Use the latest version
+    hooks:
+    -   id: ruff
+        args: [--fix, --exit-non-zero-on-fix] # Auto-fix and exit if fixes are made
+    -   id: ruff-format # Optional: if you want ruff to also format (alternative to black)
+        args: [--line-length=88] # Ensure consistency if used with black or instead of
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.10.0 # Use the latest version
+    hooks:
+    -   id: mypy
+        args: [--strict] # Or your preferred mypy arguments
+        # You might need to add additional_dependencies if your project has complex types
+        # additional_dependencies: [types-requests, ...]
+        # Pass the pyproject.toml to mypy
+        files: ^(dmsuite_jax/|tests/) # Adjust to your source and test directories
+        entry: bash -c 'mypy --config-file pyproject.toml "$@"' --
+        # The above entry point ensures mypy uses the config from pyproject.toml
+        # However, simpler projects might just use:
+        # entry: mypy --config-file pyproject.toml
+
+# To use a local hook for pytest (example)
+# -   repo: local
+#     hooks:
+#     -   id: pytest
+#         name: pytest
+#         entry: pytest
+#         language: system
+#         types: [python]
+#         pass_filenames: false # pytest handles file discovery
+#         # args: ["-m", "not integration"] # Example: run only unit tests
+#         files: ^tests/ # Only run if test files change
+
+# Ensure your `pyproject.toml` has appropriate [tool.ruff] and [tool.black] sections.
+# Ruff args in pyproject.toml will be respected by the pre-commit hook.
+# Black args here override pyproject.toml for the hook if needed, but best to keep them consistent.
+
+# Ruff configuration note:
+# The `select` and `ignore` in `pyproject.toml [tool.ruff]` will be used.
+# The `--fix` flag here tells ruff to auto-correct what it can.
+# `exit-non-zero-on-fix` ensures that if ruff makes changes, the commit will be halted,
+# allowing you to review and re-stage the changes. This is a common best practice.
+
+# Mypy configuration note:
+# Mypy can be slow. Consider running it only on changed files or in CI.
+# The `files:` pattern helps scope mypy.
+# The `entry:` line is a common way to ensure mypy picks up global config from pyproject.toml.
+# If you have a `src` layout, adjust `files:` to `^(src/dmsuite_jax/|tests/)`.
+# For now, I've assumed the package will be `dmsuite_jax` directly in the root.
+# Will adjust if a `src` layout is adopted later.
