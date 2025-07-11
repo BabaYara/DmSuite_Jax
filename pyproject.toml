@@ -61,7 +61,7 @@ line-length = 88
 line-length = 88
 select = [
     "E",  # pycodestyle errors
-    # "W",  # pycodestyle warnings (now ignored)
+    "W",  # pycodestyle warnings
     "F",  # Pyflakes
     "I",  # isort
     "C90", # mccabe complexity
@@ -77,7 +77,6 @@ select = [
 ]
 ignore = [
     "E501", # line too long, handled by black
-     "W",    # Ignore all pycodestyle warnings as per plan "pylint + pycodestyle –W"
 ]
 
 [tool.mypy]
